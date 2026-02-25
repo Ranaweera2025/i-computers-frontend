@@ -1,5 +1,7 @@
 
 import './App.css'
+import ProductCard from './components/productCard'
+import TrendingProduct from './components/trendingProduct'
 
 function App() {
  
@@ -7,11 +9,14 @@ function App() {
   return (
     <>
       <div>
-        welcome to my app
+
+        <TrendingProduct></TrendingProduct>
+
       </div>
      
     </>
   )
 }
+
 
 export default App
