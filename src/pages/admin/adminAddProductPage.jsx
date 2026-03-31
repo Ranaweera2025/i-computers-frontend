@@ -22,80 +22,61 @@ export default function AdminAddProductPage(){
     const navigate = useNavigate();
     
     async function handleSave(){
-        if (isSaving) return;
 
-       
+        try{
 
-        if (!productId || !name.trim() || !price || !labelledPrice || !description.trim() || !model.trim() || !stock) {
-            toast.error("Please fill out all required fields before saving.");
-            return;
-        }
+            const token = localStorage.getItem("token");
 
-        const token = localStorage.getItem("token");
+            if(token == null){
+                toast.error("You must be logged in to perform this action.");
+                window.location.href = "/login";
+                return;
+            }
 
-        if(token == null){
-            toast.error("You must be logged in to perform this action.");
-            window.location.href = "/login";
-            return;
-        }
-
-        const priceNumber = Number(price);
-        const labelledPriceNumber = Number(labelledPrice);
-        const stockNumber = Number(stock);
-
-        if (Number.isNaN(priceNumber) || Number.isNaN(labelledPriceNumber) || Number.isNaN(stockNumber)) {
-            toast.error("Price, labelled price and stock must be valid numbers.");
-            return;
-        }
-
-        if (!images || images.length === 0) {
-            toast.error("Please upload at least one image.");
-            return;
-        }
-
-        setIsSaving(true);
-
-        try {
-            const mediaUploadPromises = [];
+            const mediaUploadPromises = []
 
             for(let i=0; i<images.length; i++){
+
                 mediaUploadPromises.push(uploadMedia(images[i]));
+
             }
 
             const urls = await Promise.all(mediaUploadPromises);
-            const altNamesArray = altNames
-                .split(",")
-                .map((name) => name.trim())
-                .filter(Boolean);
+            const altNamesArray = altNames.split(",")
 
             const productData = {
-                productId,
-                name: name.trim(),
-                altNames: altNamesArray,
-                price: priceNumber,
-                labelledPrice: labelledPriceNumber,
-                description: description.trim(),
-                images: urls,
-                brand,
-                model: model.trim(),
-                category,
-                isAvailable,
-                stock: stockNumber,
-            };
+                productId : productId,
+                name : name,
+                altNames : altNamesArray,
+                price : price,
+                labelledPrice : labelledPrice,
+                description : description,
+                images : urls,
+                brand : brand,
+                model : model,
+                category : category,
+                isAvailable : isAvailable,
+                stock : stock
+            }
 
-            await axios.post(import.meta.env.VITE_API_URL+"/products", productData, {
-                headers: { Authorization: "Bearer " + token },
-            });
+
+            await axios.post(import.meta.env.VITE_API_URL+"/products", productData,
+                {
+                    headers : {
+                        "Authorization" : "Bearer "+token
+                    }
+                }
+            )
 
             toast.success("Product added successfully!");
+            //
             navigate("/admin/products");
 
-        } catch(error) {
+
+        }catch(error){
             console.error("Error adding product:", error);
             console.log("Error response data:", error?.response);
-            toast.error(error?.response?.data?.message || "Failed to add product. Please try again.");
-        } finally {
-            setIsSaving(false);
+            toast.error(error?.response?.data?.message || "Failed to add product. Please try again.")
         }
     }
 
