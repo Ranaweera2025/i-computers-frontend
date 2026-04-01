@@ -43,7 +43,7 @@ export default function AdminProductsPage(){
     return(
         <div className="w-full h-full overflow-y-auto p-6 bg-gray-100">
         
-    <div className="sticky top-0 z-10 w-full h-[80px] rounded-lg bg-white flex items-center px-6 justify-between shadow border">
+    <div className="w-full mb-6">
         <h1 className="text-2xl font-semibold text-gray-800">Products</h1>                
     </div>
 

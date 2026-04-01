@@ -3,6 +3,8 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
+
+
 export default function LoginPage() {
 
     const [email, setEmail] = useState("");
@@ -41,11 +43,11 @@ export default function LoginPage() {
     }
 
 	return (
-		<div className="w-full h-screen flex justify-center items-center bg-[url('/login-bg.jpg')] bg-center bg-cover">
+		<div className="w-full h-screen flex justify-center items-center bg-[url('/bg.png')] bg-center bg-cover">
 			<div className="w-1/2  h-full "></div>
 			<div className="w-1/2  h-full  flex justify-center items-center ">
-				<div className="w-[400px] h-[500px] backdrop-blur-lg rounded-xl shadow-2xl flex flex-col justify-center items-center">
-					<h1 className="text-4xl font-bold mb-8 text-secondary">Sign in</h1>
+				<div className="w-[350px] h-[500px] text-[14px] backdrop-blur-lg rounded-2xl shadow-3xl flex flex-col justify-center items-center">
+					<h1 className="text-4xl font-bold mb-8 text-accent">Sign in</h1>
 					<input
                         onChange={
                             (e)=>{
@@ -54,7 +56,7 @@ export default function LoginPage() {
                         }
                         value={email}
 						placeholder="Email"
-						className="w-3/4 p-3 mb-6 rounded-lg border border-gray-400 focus:outline-none focus:ring-2 focus:ring-accent"
+						className="w-3/4 p-3 mb-10 rounded-lg border border-gray-700 focus:outline-none focus:ring-1 focus:ring-accent placeholder:text-gray-500 text-amber-50"
 					/>
 					<input    
                         onChange={
@@ -65,9 +67,9 @@ export default function LoginPage() {
                         value={password}
 						placeholder="Password"
 						type="password"
-						className="w-3/4 p-3  rounded-lg border border-gray-400 focus:outline-none focus:ring-2 focus:ring-accent"
+						className="w-3/4 p-3 mb-4 rounded-lg border border-gray-700 focus:outline-none focus:ring-1 focus:ring-accent placeholder:text-gray-500 text-amber-50"
 					/>
-                    <p className="mb-6 w-3/4 text-right text-white">Forget password? <Link to="/forgot-password" className="text-accent">Click here</Link></p>
+                    <p className="mb-6 w-3/4 mb-14 text-center text-white">Forget password? <Link to="/forgot-password" className="text-accent">Click here</Link></p>
                     <button onClick={handleLogin} className="w-3/4 p-3 bg-accent text-white rounded-lg ">
                         Sign in
                     </button>

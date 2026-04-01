@@ -8,13 +8,13 @@ export default function AdminPage(){
         <div className="w-full h-screen flex bg-gray-100">
     
     {/* Sidebar */}
-    <div className="w-[240px] h-full bg-accent text-white flex flex-col shadow-lg">
+    <div className="w-[200px] h-full bg-accent text-white flex flex-col shadow-lg">
         
         <div className="h-[80px] flex items-center justify-center border-b border-white/10">
             <h1 className="text-xl font-bold tracking-wide">Admin Panel</h1>
         </div>
 
-        <div className="flex flex-col mt-4 gap-1 px-2">
+        <div className="flex flex-col mt-4 gap-1 px-2 text-8px">
             <Link to="/admin/" className="py-3 px-4 rounded-lg hover:bg-white/10 transition">Orders</Link>
             <Link to="/admin/products" className="py-3 px-4 rounded-lg hover:bg-white/10 transition">Products</Link>
             <Link to="/admin/users" className="py-3 px-4 rounded-lg hover:bg-white/10 transition">Users</Link>
